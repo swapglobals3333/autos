@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% block content %}
+<main class="formPage my-xl">
+  <div class="content-box">
+    <div class="formWrapper">
+      <h2>Booking Confirmation</h2>
+
+      <p>Thank you for choosing Maple Auto Care!<br><br>
+         Please confirm your booking details:</p>
+
+      <div class="container">
+        <div class="layout">
+          <div class="column">
+            <div class="singleProject__info"><strong>Name:</strong> {{ booking.customer_name }}</div>
+            <div class="singleProject__info"><strong>Phone:</strong> {{ booking.contact_info }}</div>
+            <div class="singleProject__info"><strong>Email:</strong> {{ booking.email_info }}</div>
+            <div class="singleProject__info"><strong>Appointment Date:</strong> {{ booking.appointment_date }}</div>
+            <div class="singleProject__info"><strong>Appointment Slot:</strong> {{ booking.appointment_slot }}</div>
+
+            <div class="singleProject__info"><strong>Services:</strong>
+              <ul style="margin-left: 2rem;">
+                {% for service in services %}
+                  <li>{{ service.name }} - {{ service.price }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            <br>
+            <div class="singleProject__info"><strong>Total Price:</strong> ₹{{ total_price }}</div>
+          </div>
+        </div>
+      </div>
+
+      <form method="POST">
+        {% csrf_token %}
+        <a href="{% url 'new-booking' %}" class="btn btn--sub btn--lg my-md">Back to Booking</a>
+        <button type="submit" class="btn btn--primary btn--lg my-md">Confirm Booking</button>
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+  input[type='text'],
+  input[type='email'],
+  input[type='password'] {
+      min-width: 24rem;
+      width: 100%;
+      padding: 1.2rem 1.5rem;
+      border-radius: 0.5rem;
+      border: 2px solid var(--color-light);
+      transition: all 0.3s ease-in-out;
+      background-color: #fff;
+  }
+
+  input[type='text']:focus,
+  input[type='email']:focus,
+  input[type='password']:focus,
+  input[type='text']:active,
+  input[type='email']:active,
+  input[type='password']:active {
+      outline: none;
+      border: 2px solid var(--color-main);
+  }
+</style>
+
+<section id="appointment" class="section light-background">
+    <div class="container section-title text-center" data-aos="fade-up">
+      <h2>Book a New Appointment</h2>
+    </div>
+  
+    <div class="container d-flex justify-content-center" data-aos="fade" data-aos-delay="100">
+      <div class="col-lg-8">
+        <form method="POST" action="">
+          {% csrf_token %}
+  
+          {% for field in form %}
+            <div class="mb-3">
+              {{ field.label_tag }}
+              {{ field }}
+              {% if field.errors %}
+                <div class="text-danger small">{{ field.errors|striptags }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+  
+          <div class="text-center">
+            <button type="submit" class="btn btn-danger">Confirm Booking</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+{% endblock %}

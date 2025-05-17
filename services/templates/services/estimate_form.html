@@ -1,0 +1,106 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<section id="estimate" class="estimate section light-background">
+
+  <!-- Section Title -->
+  <div class="container section-title text-center" data-aos="fade-up">
+    <h2>Price Estimation</h2>
+  </div>
+
+  <div class="container" data-aos="fade" data-aos-delay="100">
+    <div class="row gy-4 justify-content-center">
+      <div class="col-lg-10 mx-auto">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="row gy-4">
+
+            <!-- Left: Service selection -->
+            <div class="col-md-6">
+              <label for="services">Choose Services</label>
+              <select id="services" name="services" multiple>
+                {% for service in services %}
+                  <option value="{{ service.id }}" data-price="{{ service.price }}">{{ service.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <!-- Right: Selected services as bill and centered button -->
+            <div class="col-md-6">
+              <label>Selected Services</label>
+              <div id="selected-services" class="p-3 rounded  mb-3 text-white choices__inner" style="min-height: 150px;">
+                <em>No services selected</em>
+              </div>
+
+              <!-- Centered button -->
+              <div class="text-center">
+                <a class="btn btn-danger mt-2" href="https://www.aribooking.utilitymobileapps.com/index.html?FBProject=ARI&shopID=VvgGOWQIFtQm0yHR06giR3FKcbN2&version=v.14.2.6"
+                   target="_blank" style="min-width: 220px;">
+                  Schedule Appointment
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Include Choices.js -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const serviceSelect = document.getElementById('services');
+    const selectedServicesBox = document.getElementById('selected-services');
+
+    const choices = new Choices(serviceSelect, {
+      removeItemButton: true,
+      searchEnabled: true,
+      placeholderValue: 'Select services',
+      shouldSort: false
+    });
+
+    function updateDisplay() {
+      let total = 0;
+      let selectedTexts = [];
+
+      selectedServicesBox.innerHTML = '';
+
+      Array.from(serviceSelect.selectedOptions).forEach(option => {
+        const price = parseFloat(option.dataset.price || 0);
+        total += price;
+        selectedTexts.push({name: option.text, price: price});
+      });
+
+      if (selectedTexts.length > 0) {
+        selectedTexts.forEach(service => {
+          selectedServicesBox.innerHTML += `
+            <div class="d-flex justify-content-between mb-2">
+              <span>${service.name}</span>
+              <span>$${service.price.toFixed(2)}</span>
+            </div>
+          `;
+        });
+
+        // Add divider and total
+        selectedServicesBox.innerHTML += `
+          <hr class="bg-light my-2">
+          <div class="d-flex justify-content-between fw-bold">
+            <span>Total</span>
+            <span>$${total.toFixed(2)}</span>
+          </div>
+        `;
+      } else {
+        selectedServicesBox.innerHTML = '<em>No services selected</em>';
+      }
+    }
+
+    serviceSelect.addEventListener('change', updateDisplay);
+  });
+</script>
+{% endblock %}

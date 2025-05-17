@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+            <a class="backButton" href="{% url 'booking-home' %}"><i class="fa-solid fa-angle-left"></i></a>
+            <br>
+            <h2>Cancel Your Booking</h2>
+
+            <form class="form" action="" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <p>Are you sure you want to delete your booking?</p>
+
+                <a class="btn btn--sub btn--lg  my-md" href="{% url 'booking-home' %}">Go Back</a>
+
+                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Cancel Booking" />
+            </form>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

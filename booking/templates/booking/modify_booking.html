@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+            <a class="backButton" href="{% url 'booking-home' %}"><i class="fa-solid fa-angle-left"></i></a>
+
+            <br>
+            <h2>Modify Your Booking</h2>
+
+            {% if not booking %}
+                <!-- Show Booking ID form if no booking has been found yet -->
+                <form method="POST" action="" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="booking_id">Enter Booking ID:</label>
+                        <input type="text" id="booking_id" name="booking_id" class="input" required placeholder="Enter your Booking ID">
+                    </div>
+                    <input type="submit" class="btn btn--sub btn--lg my-md" value="Search Booking">
+                </form>
+            {% else %}
+                <!-- Show the form to edit booking details -->
+                <form method="POST" autocomplete="off">
+                    {% csrf_token %}
+
+                    <!-- Hidden input for booking ID -->
+                    <input type="hidden" name="id" value="{{ booking.id }}">
+
+                    {{ form.as_p }}
+
+                    <input class="btn btn--sub btn--lg my-md" type="submit" value="Update Booking">
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</main>
+{% endblock %}

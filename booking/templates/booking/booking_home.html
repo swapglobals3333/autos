@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+            <a class="backButton" href="{% url 'booking-home' %}">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+            <br><br>
+
+            <div class="container container--narrow">
+                <a href="{% url 'new-booking' %}">New Booking</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="{% url 'modify-booking' %}">Modify Booking</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="{% url 'cancel-booking' %}">Cancel Booking</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
