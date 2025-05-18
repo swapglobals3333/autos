@@ -17,6 +17,9 @@
             <li>
               <a href="{% url 'services' %}" class="{% if request.path == '/services/' %}active{% endif %}">Services</a>
             </li>
+            <li>
+              <a href="{% url 'locations' %}" class="{% if request.path == '/locations/' %}active{% endif %}">Locations</a>
+            </li>
             <!-- <li>
               <a href="{% url 'new-booking' %}" class="{% if request.path == '/booking/' %}active{% endif %}">Booking</a>
             </li> -->
