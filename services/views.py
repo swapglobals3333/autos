@@ -25,6 +25,9 @@ def getService(request, pk):
     context = {"service": service}
     return render(request, "services/single-service.html", context)
 
+def locations(request):
+    return render(request, 'locations.html')
+
 # def updateService(request):
 #     form = ServiceForm()
 
