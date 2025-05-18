@@ -922,9 +922,9 @@ section,
   color: var(--contrast-color);
   background: var(--accent-color);
   margin: 0;
-  width: 64px;
-  height: 64px;
-  border-radius: 50px;
+  width: 32px;
+  height: 32px;
+  border-radius: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
