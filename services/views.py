@@ -28,6 +28,9 @@ def getService(request, pk):
 def locations(request):
     return render(request, 'services/locations.html')
 
+def whowe_view(request):
+    return render(request, 'services/whowe.html')
+
 # def updateService(request):
 #     form = ServiceForm()
 
