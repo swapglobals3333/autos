@@ -7,6 +7,7 @@ urlpatterns = [
 
     path('estimate_price/', views.calculate_estimate, name='estimate_price'),
     path('locations/', views.locations, name='locations'),
+     path('who-we-are/', views.whowe_view, name='whowe'),
     # path('create-service', views.createService, name="create-service"),
     # path('update-service/<str:pk>/', views.updateService, name="update-service"),
     # path('delete-service/<str:pk>/', views.deleteService, name="delete-service"),
