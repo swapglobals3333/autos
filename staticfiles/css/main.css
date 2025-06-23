@@ -31,7 +31,7 @@
 :root {
   --nav-color: #ffffff;  /* The default color of the main navmenu links */
   --nav-hover-color: #b50000; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
+  --nav-mobile-background-color: #444444; /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
   --nav-dropdown-color: #444444; /* Used for navigation links of the dropdown items in the navigation menu. */
   --nav-dropdown-hover-color: #009961; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
@@ -444,15 +444,17 @@ h6 {
   }
 
   .navmenu ul {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     list-style: none;
     position: absolute;
     inset: 60px 20px 20px 20px;
     padding: 10px 0;
     margin: 0;
     border-radius: 6px;
-    background-color: var(--nav-mobile-background-color);
-    border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+    background-color: transparent;
+    /* border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%); */
     box-shadow: none;
     overflow-y: auto;
     transition: 0.3s;
@@ -462,9 +464,10 @@ h6 {
   .navmenu a,
   .navmenu a:focus {
     color: var(--nav-dropdown-color);
-    padding: 10px 20px;
+    padding: 15px 20px;
     font-family: var(--nav-font);
-    font-size: 17px;
+    font-size: 18px;
+    width: 100%;
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -544,7 +547,7 @@ h6 {
     position: fixed;
     overflow: hidden;
     inset: 0;
-    background: rgba(33, 37, 41, 0.8);
+    background: rgb(255 255 255 / 89%);
     transition: 0.3s;
   }
 
@@ -570,7 +573,7 @@ h6 {
   font-weight: 700;
   position: relative;
   padding: 0;
-  margin: 0 0 15px 0;
+  margin: 0 0 4px 0;
 }
 
 .footer p {
@@ -784,7 +787,6 @@ section,
   display: block;
   width: 50px;
   height: 3px;
-  background: var(--accent-color);
   left: 0;
   right: 0;
   bottom: 0;
@@ -840,7 +842,8 @@ section,
 .hero p {
   color: color-mix(in srgb, var(--default-color), transparent 20%);
   margin: 10px 0 20px 0;
-  font-size: 24px;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 @media (max-width: 768px) {
@@ -861,6 +864,17 @@ section,
 .about ul {
   list-style: none;
   padding: 0;
+}
+
+.about p {
+  margin-bottom: 0;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  text-align: center;
+  font-size: large;
+}
+
+.about .subheading {
+  text-align: center;
 }
 
 .about ul li {
@@ -922,27 +936,30 @@ section,
   color: var(--contrast-color);
   background: var(--accent-color);
   margin: 0;
-  width: 32px;
-  height: 32px;
-  border-radius: 40px;
+  width: 64px;
+  height: 64px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
   font-size: 28px;
+  font-size: 20px;
   transition: ease-in-out 0.3s;
 }
+
 
 .services .service-item h3 {
   font-weight: 700;
   margin: 10px 0 15px 0;
-  font-size: 22px;
   transition: ease-in-out 0.3s;
 }
 
 .services .service-item p {
   line-height: 24px;
-  font-size: 14px;
+  font-weight: 400;
   margin-bottom: 0;
 }
 
